@@ -6,6 +6,7 @@
         Women,
         Trail,
         Endurance,
-        Gym
+        Gym,
+        City
     }
 }

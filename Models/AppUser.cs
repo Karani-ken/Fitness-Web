@@ -1,7 +1,11 @@
-﻿namespace Fitness_Web.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Fitness_Web.Models
 {
     public class AppUser
     {
+        [Key]
+        public string Id { get; set; }
         public int? Pace { get; set; }
 
         public int? Mileage { get; set; }
