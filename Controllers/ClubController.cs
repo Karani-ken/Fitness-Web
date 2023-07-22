@@ -1,4 +1,5 @@
 ﻿using Fitness_Web.Data;
+using Fitness_Web.Interfaces;
 using Fitness_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,18 +9,19 @@ namespace Fitness_Web.Controllers
     public class ClubController : Controller
     {
        private readonly ApplicationDbContext _context;
-        public ClubController(ApplicationDbContext contex)
+        private readonly IClubRepository _clubRepository;
+        public ClubController(IClubRepository clubRepository)
         {
-                _context = contex;
+                _clubRepository = clubRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var clubs = _context.Clubs.ToList();
+            IEnumerable<Club> clubs = await _clubRepository.GetAll();
             return View(clubs);
         }
-        public IActionResult Details(int Id)
+        public async Task<IActionResult> Details(int Id)
         {
-            Club club = _context.Clubs.Include(a => a.Address).FirstOrDefault(x => x.Id == Id);
+            Club club = await _clubRepository.GetByIdAsync(Id);
             return View(club);
         }
     }

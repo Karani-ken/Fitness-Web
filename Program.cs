@@ -1,4 +1,6 @@
 using Fitness_Web.Data;
+using Fitness_Web.Interfaces;
+using Fitness_Web.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<IClubRepository, ClubRepository>();
+builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 var app = builder.Build();
 if(args.Length == 1 && args[0].ToLower() == "seeddata")
 {

@@ -8,8 +8,8 @@ namespace Fitness_Web.Interfaces
         Task<Club> GetByIdAsync(int id);
         Task<IEnumerable<Club>> GetClubByCity(string city);
         bool Add(Club club);
-        Task Update(Club club);
-        Task Delete(Club club);
+        bool Update(Club club);
+        bool Delete(Club club);
         bool Save();
     }
 }
