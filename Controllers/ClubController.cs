@@ -24,5 +24,20 @@ namespace Fitness_Web.Controllers
             Club club = await _clubRepository.GetByIdAsync(Id);
             return View(club);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        //add a club
+        [HttpPost]
+        public async Task<IActionResult> Create(Club club)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(club);
+            }
+            _clubRepository.Add(club);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -23,5 +23,9 @@ namespace Fitness_Web.Controllers
             Race race = await _raceRepository.GetByIdAsync(id);
             return View(race);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
