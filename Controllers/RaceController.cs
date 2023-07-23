@@ -27,5 +27,16 @@ namespace Fitness_Web.Controllers
         {
             return View();
         }
+        //add a race
+        [HttpPost]
+        public async Task<IActionResult> Create(Race race)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(race);
+            }
+            _raceRepository.Add(race);
+            return RedirectToAction("Index");
+        }
     }
 }
