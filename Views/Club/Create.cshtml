@@ -1,9 +1,10 @@
 ﻿@using Fitness_Web.Data.Enum;
-@model Club
+@using Fitness_Web.ViewModels;
+@model CreateClubViewModel
 @*
     create page for club
 *@
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="Title" class="form-label">Title</label>
         <input asp-for="Title" class="form-control"/>
@@ -14,11 +15,7 @@
         <input asp-for="Description" class="form-control" />
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="Image" class="form-label">Image</label>
-        <input asp-for="Image" class="form-control" />
-        <span asp-validation-for="Image" class="text-danger"></span>
-    </div>
+  
     <div class="mb-3">
         <label asp-for="ClubCategory" class="form-label">Club category</label>
         <select asp-for="ClubCategory" asp-items="@Html.GetEnumSelectList<ClubCategory>()">
@@ -40,6 +37,11 @@
         <label asp-for="Address.County" class="form-label">County</label>
         <input asp-for="Address.County" class="form-control" />
         <span asp-validation-for="Address.County" class="text-danger"></span>
+    </div>
+      <div class="mb-3">
+        <label asp-for="Image" class="form-label">Image</label>
+        <input asp-for="Image" type="file" class="form-control" />
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

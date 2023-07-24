@@ -2,6 +2,7 @@ using Fitness_Web.Data;
 using Fitness_Web.Helpers;
 using Fitness_Web.Interfaces;
 using Fitness_Web.Repository;
+using Fitness_Web.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
 builder.Services.AddScoped<IRaceRepository, RaceRepository>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 var app = builder.Build();
 if(args.Length == 1 && args[0].ToLower() == "seeddata")
