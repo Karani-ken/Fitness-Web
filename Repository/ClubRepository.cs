@@ -33,6 +33,10 @@ namespace Fitness_Web.Repository
         {
             return await _context.Clubs.Include(i => i.Address).FirstOrDefaultAsync(x => x.Id == id);
         }
+        public async Task<Club> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Clubs.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {
@@ -48,7 +52,8 @@ namespace Fitness_Web.Repository
         public bool Update(Club club)
         {
             _context.Update(club);
-            return Save();
+
+            return Save(); 
         }
 
         
